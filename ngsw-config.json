@@ -5,6 +5,10 @@
     {
       "name": "app",
       "installMode": "prefetch",
+
+
+      "updateMode": "prefetch",
+
       "resources": {
         "files": [
           "/favicon.ico",
@@ -26,5 +30,20 @@
         ]
       }
     }
+
+
+  ],
+  "dataGroups": [
+    {
+      "name": "openweather-cache",
+      "urls": ["https://api.openweathermap.org/data/2.5/**"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 100,
+        "maxAge": "1h",
+        "timeout": "5s"
+      }
+    }
+
   ]
 }
