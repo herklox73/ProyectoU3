@@ -1,0 +1,10 @@
+/* src/app/app.component.css */
+
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(90deg, #007bff, #00c4ff);
+  color: #fff;
+  font-size: 14px;
+}
