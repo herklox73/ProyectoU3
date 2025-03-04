@@ -1,47 +1,92 @@
 /* src/app/registro/registro.component.css */
-.registro {
-  padding: 60px 20px;
-  text-align: center;
-  background-color: #f8f9fa;
+.registro-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #e0f7fa 0%,
+    #b2ebf2 100%
+  ); /* Fondo degradado igual al login */
+  padding: 20px;
 }
 
-.registro h2 {
-  font-size: 36px;
-  color: #333;
-  margin-bottom: 40px;
-}
-
-.registro-form {
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+.registro-card.box {
+  width: 100%;
+  max-width: 420px;
   padding: 30px;
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: left;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.registro-form input {
+.registro-card.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+mat-card-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0277bd; /* Azul profesional igual al login */
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.example-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.example-full-width {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
 }
 
-.registro-form button {
+mat-form-field {
+  transition: all 0.3s ease;
+}
+
+mat-form-field:hover {
+  transform: scale(1.02);
+}
+
+.btn-block {
   width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+  padding: 10px;
   font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: 500;
+  background: linear-gradient(
+    90deg,
+    #0288d1,
+    /* Azul claro profesional */ #01579b /* Azul oscuro elegante */
+  ); /* Igual al login */
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  color: #ffffff;
 }
 
-.registro-form button:hover {
-  background-color: #0056b3;
+.btn-block:hover:not(:disabled) {
+  background: linear-gradient(90deg, #0277bd, #004d8c); /* Igual al login */
+  transform: translateY(-2px);
+}
+
+.btn-block:disabled {
+  background: #b0bec5;
+  cursor: not-allowed;
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+  .registro-card.box {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  mat-card-title {
+    font-size: 24px;
+  }
 }

@@ -1,10 +1,38 @@
 /* src/app/app.component.css */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+}
 
+main {
+  flex: 1 0 auto; /* Permite que el contenido principal crezca para llenar el espacio disponible, pero no se encoge más allá de su contenido */
+}
 
-.footer {
-  padding: 20px;
-  text-align: center;
-  background: linear-gradient(90deg, #007bff, #00c4ff);
-  color: #fff;
+.footer-toolbar {
+  background: linear-gradient(
+    90deg,
+    #0288d1,
+    #4fc3f7
+  ); /* Degradado azul odontológico */
+  color: #ffffff; /* Texto blanco para contraste */
+  justify-content: center; /* Centra el contenido */
+  padding: 10px 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Sombra superior sutil */
+  width: 100%; /* Asegura que el footer ocupe todo el ancho */
+  flex-shrink: 0; /* Evita que el footer se encoga */
+}
+
+/* Estilo para el texto del footer */
+.footer-toolbar span {
   font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+  .footer-toolbar span {
+    font-size: 12px;
+  }
 }

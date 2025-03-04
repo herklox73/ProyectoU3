@@ -1,0 +1,161 @@
+<!-- src/app/agendar/agendar.component.html -->
+<mat-toolbar color="primary" class="header">
+  <div class="logo-container">
+    <img
+      alt="Logo de la clínica odontológica"
+      src="https://storage.googleapis.com/a1aa/image/y8TEgSH2kzM8_h3rw9mhlBjl68tQ4haHgLMkEC1hCkE.jpg"
+    />
+  </div>
+  <div class="nav-links">
+    <a mat-button routerLink="/inicio">Inicio</a>
+    <a mat-button routerLink="/agendar">Agendar Cita</a>
+    <a mat-button routerLink="/citas">Citas Agendadas</a>
+    <a mat-button routerLink="/login">Login</a>
+  </div>
+</mat-toolbar>
+<div class="agendar-wrapper">
+  <mat-card class="agendar-card box">
+    <mat-card-header>
+      <mat-card-title>Agendar Cita</mat-card-title>
+    </mat-card-header>
+
+    <form
+      [formGroup]="agendarForm"
+      (ngSubmit)="agendarCita()"
+      class="example-form"
+    >
+      <mat-card-content fxLayout="column" fxLayoutGap="30px">
+        <!-- Datos del Paciente -->
+        <div fxLayout="column" fxLayoutGap="20px">
+          <h2>Datos del Paciente</h2>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Nombres y Apellidos</mat-label>
+            <input
+              matInput
+              placeholder="Ingresa nombres y apellidos"
+              formControlName="nombres"
+              required
+            />
+            @if (agendarForm.get('nombres')?.invalid &&
+            agendarForm.get('nombres')?.touched) {
+            <mat-error>{{ getErrorMessage("nombres") }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Edad</mat-label>
+            <input
+              matInput
+              type="number"
+              placeholder="Ingresa la edad"
+              formControlName="edad"
+              required
+            />
+            @if (agendarForm.get('edad')?.invalid &&
+            agendarForm.get('edad')?.touched) {
+            <mat-error>{{ getErrorMessage("edad") }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Número de Teléfono</mat-label>
+            <input
+              matInput
+              type="tel"
+              placeholder="Ingresa el número"
+              formControlName="telefono"
+              required
+            />
+            @if (agendarForm.get('telefono')?.invalid &&
+            agendarForm.get('telefono')?.touched) {
+            <mat-error>{{ getErrorMessage("telefono") }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Correo Electrónico</mat-label>
+            <input
+              matInput
+              type="email"
+              placeholder="Ingresa el correo"
+              formControlName="correo"
+              required
+            />
+            @if (agendarForm.get('correo')?.invalid &&
+            agendarForm.get('correo')?.touched) {
+            <mat-error>{{ getErrorMessage("correo") }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <!-- Información de la Cita -->
+        <div fxLayout="column" fxLayoutGap="20px">
+          <h2>Información de la Cita</h2>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Motivo de la Consulta</mat-label>
+            <mat-select formControlName="motivo" required>
+              <mat-option value="" disabled
+                >Escoge el tipo de consulta</mat-option
+              >
+              <mat-option value="revision">Revisión General</mat-option>
+              <mat-option value="limpieza">Limpieza Dental</mat-option>
+              <mat-option value="tratamiento">Tratamiento Especial</mat-option>
+              <mat-option value="urgencia">Urgencia Dental</mat-option>
+            </mat-select>
+            @if (agendarForm.get('motivo')?.invalid &&
+            agendarForm.get('motivo')?.touched) {
+            <mat-error>{{ getErrorMessage("motivo") }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha Asignada</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="fecha"
+              [min]="minDate"
+              required
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            @if (agendarForm.get('fecha')?.invalid &&
+            agendarForm.get('fecha')?.touched) {
+            <mat-error>{{ getErrorMessage("fecha") }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <div
+        class="buttons"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        fxLayoutGap="15px"
+      >
+        <button
+          mat-raised-button
+          color="accent"
+          type="submit"
+          [disabled]="agendarForm.invalid"
+        >
+          Agendar Cita
+        </button>
+        <button
+          mat-stroked-button
+          color="warn"
+          type="button"
+          (click)="cancelarCita()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

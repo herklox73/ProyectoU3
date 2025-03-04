@@ -1,85 +1,155 @@
-/* src/app/agendar-cita/agendar-cita.component.css */
-.contact {
-  padding: 60px 20px;
-  background: linear-gradient(to bottom, #e6f0ff, #fff);
-  text-align: center;
-}
-
-.contact h2 {
-  font-size: 36px;
-  color: #333;
-  margin-bottom: 40px;
-}
-
-.contact-info {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto 40px;
-}
-
-.contact-info div {
-  background-color: #fff;
-  border-radius: 15px;
+/* src/app/agendar/agendar.component.css */
+.agendar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
   padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.contact-info i {
-  font-size: 24px;
-  color: #007bff;
-  margin-bottom: 10px;
-}
-
-.contact-info p {
-  color: #333;
-  font-weight: 500;
-}
-
-.contact-form {
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+.agendar-card.box {
+  width: 100%;
+  max-width: 700px;
   padding: 30px;
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: left;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-form h3 {
-  font-size: 22px;
-  color: #333;
+.agendar-card.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+mat-card-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0277bd;
+  text-align: center;
   margin-bottom: 20px;
+  letter-spacing: 0.5px;
 }
 
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #0277bd;
+  margin: 0 0 10px;
+}
+
+.example-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+mat-form-field {
+  width: 100%; /* Asegura que ocupen todo el ancho disponible */
+  max-width: 500px; /* Limita el ancho máximo para que no se vea demasiado estirado */
+  margin: 0 auto; /* Centra los campos */
+}
+mat-form-field:hover {
+  transform: scale(1.02);
+}
+
+.buttons {
+  margin-top: 25px; /* Más espacio antes de los botones */
+}
+
+/* Estilo para los botones más estrechos */
+button[mat-raised-button],
+button[mat-stroked-button] {
+  padding: 8px 20px; /* Reducimos el ancho */
   font-size: 16px;
-}
-
-.contact-form textarea {
-  height: 100px;
-  resize: none;
-}
-
-.contact-form button {
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
+  font-weight: 500;
   border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  min-width: 120px; /* Ancho mínimo para que no sean demasiado pequeños */
 }
 
-.contact-form button:hover {
-  background-color: #0056b3;
+button[mat-raised-button] {
+  background: linear-gradient(90deg, #0288d1, #01579b);
+  color: #ffffff;
+}
+
+button[mat-raised-button]:hover:not(:disabled) {
+  background: linear-gradient(90deg, #0277bd, #004d8c);
+  transform: translateY(-2px);
+}
+
+button[mat-raised-button]:disabled {
+  background: #b0bec5;
+  cursor: not-allowed;
+}
+
+button[mat-stroked-button] {
+  color: #d32f2f;
+}
+
+@media (max-width: 480px) {
+  .agendar-card.box {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  mat-card-title {
+    font-size: 24px;
+  }
+
+  button[mat-raised-button],
+  button[mat-stroked-button] {
+    min-width: 100px; /* Ajuste para móviles */
+    padding: 6px 15px;
+  }
+}
+.example-form {
+  gap: 30px; /* Aumenta el espacio entre secciones */
+}
+@media (max-width: 480px) {
+  mat-form-field {
+    max-width: 100%; /* En móviles, usa todo el ancho */
+  }
+}
+/* src/app/nav/nav.component.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container img {
+  height: 60px;
+  transition: transform 0.3s ease;
+}
+
+.logo-container img:hover {
+  transform: scale(1.1);
+}
+
+/* Los estilos de los botones de Material Design se manejan por defecto, pero puedes personalizarlos */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+/* Opcional: Personaliza los botones de Material Design si lo necesitas */
+.nav-links .mat-button {
+  text-transform: uppercase; /* Opcional: Para mayúsculas, típico en Material Design */
+  font-weight: 600;
+  padding: 0 16px; /* Ajusta el padding según tus necesidades */
+}
+
+/* Asegúrate de que los botones tengan un buen espaciado y sean responsive */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    gap: 10px;
+  }
 }

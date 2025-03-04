@@ -3,12 +3,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 50px;
-  background: linear-gradient(90deg, #007bff, #00c4ff);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 
 .logo-container img {
@@ -20,21 +14,28 @@
   transform: scale(1.1);
 }
 
+/* Los estilos de los botones de Material Design se manejan por defecto, pero puedes personalizarlos */
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #fff;
+/* Opcional: Personaliza los botones de Material Design si lo necesitas */
+.nav-links .mat-button {
+  text-transform: uppercase; /* Opcional: Para mayúsculas, típico en Material Design */
   font-weight: 600;
-  font-size: 16px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  transition: background-color 0.3s ease;
+  padding: 0 16px; /* Ajusta el padding según tus necesidades */
 }
 
-.nav-links a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+/* Asegúrate de que los botones tengan un buen espaciado y sean responsive */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    gap: 10px;
+  }
 }

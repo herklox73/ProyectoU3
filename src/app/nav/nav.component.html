@@ -1,14 +1,14 @@
 <!-- src/app/nav/nav.component.html -->
-<header class="header">
+<mat-toolbar color="primary" class="header">
   <div class="logo-container">
     <img
       alt="Logo de la clínica odontológica"
       src="https://storage.googleapis.com/a1aa/image/y8TEgSH2kzM8_h3rw9mhlBjl68tQ4haHgLMkEC1hCkE.jpg"
     />
   </div>
-  <nav class="nav-links">
-    <a routerLink="/inicio">Inicio</a>
-    <a routerLink="/agendar">Agendar Cita</a>
-    <a routerLink="/login">Login</a>
-  </nav>
-</header>
+  <div class="nav-links">
+    <a mat-button routerLink="/inicio">Inicio</a>
+    <a mat-button routerLink="/agendar">Agendar Cita</a>
+    <a mat-button routerLink="/login">Login</a>
+  </div>
+</mat-toolbar>

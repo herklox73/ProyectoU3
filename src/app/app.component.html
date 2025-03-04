@@ -1,9 +1,10 @@
 <!-- src/app/app.component.html -->
-<app-nav></app-nav>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<div class="app-container">
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 
-<footer class="footer">
-  <p>© 2025 Odontología Integral. Todos los derechos reservados.</p>
-</footer>
+  <mat-toolbar class="footer-toolbar">
+    <span>© 2025 Odontología Integral. Todos los derechos reservados.</span>
+  </mat-toolbar>
+</div>

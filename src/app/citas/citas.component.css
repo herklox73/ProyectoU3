@@ -1,0 +1,86 @@
+/* src/app/citas/citas.component.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container img {
+  height: 60px;
+  transition: transform 0.3s ease;
+}
+
+.logo-container img:hover {
+  transform: scale(1.1);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links .mat-button {
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0 16px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    gap: 10px;
+  }
+}
+
+.citas-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filter-form {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mat-column-acciones {
+  width: 120px;
+}
+
+.mat-icon-button {
+  margin: 0 5px;
+}
+
+@media (max-width: 600px) {
+  .mat-column-nombres,
+  .mat-column-telefono,
+  .mat-column-correo,
+  .mat-column-motivo,
+  .mat-column-fecha {
+    display: none;
+  }
+
+  .mat-column-acciones {
+    width: 100%;
+    text-align: center;
+  }
+}

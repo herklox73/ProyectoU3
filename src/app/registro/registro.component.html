@@ -1,10 +1,118 @@
 <!-- src/app/registro/registro.component.html -->
-<section class="registro">
-  <h2>Registrarse</h2>
-  <form class="registro-form">
-    <input placeholder="Nombre" type="text" />
-    <input placeholder="Email" type="email" />
-    <input placeholder="Contraseña" type="password" />
-    <button>Registrarse</button>
-  </form>
-</section>
+<app-nav></app-nav>
+<div class="registro-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="registro-card box">
+    <mat-card-header>
+      <mat-card-title>Registro de Cliente</mat-card-title>
+    </mat-card-header>
+
+    <form
+      [formGroup]="registroForm"
+      (ngSubmit)="registrar()"
+      class="example-form"
+    >
+      <mat-card-content fxLayout="column" fxLayoutGap="16px">
+        <!-- Nombres -->
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Nombres</mat-label>
+          <input
+            matInput
+            placeholder="Ingresa tus nombres"
+            formControlName="nombres"
+            (blur)="updateErrorMessage('nombres')"
+            required
+          />
+          @if (registroForm.get('nombres')?.invalid &&
+          registroForm.get('nombres')?.touched) {
+          <mat-error>{{ getErrorMessage("nombres") }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Apellidos -->
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Apellidos</mat-label>
+          <input
+            matInput
+            placeholder="Ingresa tus apellidos"
+            formControlName="apellidos"
+            (blur)="updateErrorMessage('apellidos')"
+            required
+          />
+          @if (registroForm.get('apellidos')?.invalid &&
+          registroForm.get('apellidos')?.touched) {
+          <mat-error>{{ getErrorMessage("apellidos") }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Correo Electrónico -->
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Correo Electrónico</mat-label>
+          <input
+            matInput
+            placeholder="ejemplo@correo.com"
+            formControlName="correo"
+            (blur)="updateErrorMessage('correo')"
+            required
+          />
+          @if (registroForm.get('correo')?.invalid &&
+          registroForm.get('correo')?.touched) {
+          <mat-error>{{ getErrorMessage("correo") }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Celular -->
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Celular</mat-label>
+          <input
+            matInput
+            placeholder="Ingresa tu número de celular"
+            formControlName="celular"
+            (blur)="updateErrorMessage('celular')"
+            required
+          />
+          @if (registroForm.get('celular')?.invalid &&
+          registroForm.get('celular')?.touched) {
+          <mat-error>{{ getErrorMessage("celular") }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Contraseña -->
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="contrasena"
+            (blur)="updateErrorMessage('contrasena')"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility($event)"
+            type="button"
+            [attr.aria-label]="'Toggle password visibility'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          @if (registroForm.get('contrasena')?.invalid &&
+          registroForm.get('contrasena')?.touched) {
+          <mat-error>{{ getErrorMessage("contrasena") }}</mat-error>
+          }
+        </mat-form-field>
+      </mat-card-content>
+
+      <!-- Botón de submit -->
+      <button
+        mat-raised-button
+        color="accent"
+        class="btn-block"
+        type="submit"
+        [disabled]="registroForm.invalid"
+      >
+        Registrarse
+      </button>
+    </form>
+  </mat-card>
+</div>

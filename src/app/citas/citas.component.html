@@ -1,0 +1,99 @@
+<!-- src/app/citas/citas.component.html -->
+<mat-toolbar color="primary" class="header">
+  <div class="logo-container">
+    <img
+      alt="Logo de la clínica odontológica"
+      src="https://storage.googleapis.com/a1aa/image/y8TEgSH2kzM8_h3rw9mhlBjl68tQ4haHgLMkEC1hCkE.jpg"
+    />
+  </div>
+  <div class="nav-links">
+    <a mat-button routerLink="/inicio">Inicio</a>
+    <a mat-button routerLink="/agendar">Agendar Cita</a>
+    <a mat-button routerLink="/citas">Citas Agendadas</a>
+    <a mat-button routerLink="/login">Login</a>
+  </div>
+</mat-toolbar>
+
+<div class="citas-container">
+  <mat-form-field class="filter-form">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. Nombres o Motivo"
+      #input
+    />
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Nombres Column -->
+      <ng-container matColumnDef="nombres">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Nombres y Apellidos
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.paciente.nombres }}</td>
+      </ng-container>
+
+      <!-- Teléfono Column -->
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Número de Teléfono
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.paciente.telefono }}</td>
+      </ng-container>
+
+      <!-- Correo Column -->
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Correo Electrónico
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.paciente.correo }}</td>
+      </ng-container>
+
+      <!-- Motivo Column -->
+      <ng-container matColumnDef="motivo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Motivo de la Consulta
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.cita.motivo }}</td>
+      </ng-container>
+
+      <!-- Fecha Column -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Fecha Asignada
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.cita.fecha }}</td>
+      </ng-container>
+
+      <!-- Acciones Column -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" (click)="editCita(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteCita(row)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="6">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of citas"
+    ></mat-paginator>
+  </div>
+</div>

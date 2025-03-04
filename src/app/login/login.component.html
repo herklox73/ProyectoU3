@@ -1,9 +1,76 @@
 <!-- src/app/login/login.component.html -->
-<section class="login">
-  <h2>Iniciar Sesión</h2>
-  <form class="login-form">
-    <input placeholder="Usuario" type="text" />
-    <input placeholder="Contraseña" type="password" />
-    <button>Ingresar</button>
-  </form>
-</section>
+<app-nav></app-nav>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="login-card box">
+    <mat-card-header>
+      <mat-card-title>Inicio de Sesión</mat-card-title>
+    </mat-card-header>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="iniciarSesion()"
+      class="example-form"
+    >
+      <mat-card-content fxLayout="column" fxLayoutGap="16px">
+        <!-- Correo Electrónico -->
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Correo Electrónico</mat-label>
+          <input
+            matInput
+            placeholder="ejemplo@correo.com"
+            formControlName="correo"
+            (blur)="updateErrorMessage('correo')"
+            required
+          />
+          @if (loginForm.get('correo')?.invalid &&
+          loginForm.get('correo')?.touched) {
+          <mat-error>{{ getErrorMessage("correo") }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Contraseña -->
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="contrasena"
+            (blur)="updateErrorMessage('contrasena')"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility($event)"
+            type="button"
+            [attr.aria-label]="'Toggle password visibility'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          @if (loginForm.get('contrasena')?.invalid &&
+          loginForm.get('contrasena')?.touched) {
+          <mat-error>{{ getErrorMessage("contrasena") }}</mat-error>
+          }
+        </mat-form-field>
+      </mat-card-content>
+
+      <!-- Botón de submit -->
+      <button
+        mat-raised-button
+        color="accent"
+        class="btn-block"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Entrar
+      </button>
+
+      <!-- Enlace de registro -->
+      <p class="register-link" fxLayout="row" fxLayoutAlign="center center">
+        ¿No tienes cuenta?
+        <a routerLink="/registro" (click)="onRegisterClick()">Regístrate</a>
+      </p>
+    </form>
+  </mat-card>
+</div>
