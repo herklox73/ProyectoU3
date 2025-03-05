@@ -9,6 +9,10 @@
   <div class="nav-links">
     <a mat-button routerLink="/inicio">Inicio</a>
     <a mat-button routerLink="/agendar">Agendar Cita</a>
+    @if (isLoggedIn()) {
+    <button mat-button (click)="logout()">Cerrar Sesión</button>
+    } @else {
     <a mat-button routerLink="/login">Login</a>
+    }
   </div>
 </mat-toolbar>

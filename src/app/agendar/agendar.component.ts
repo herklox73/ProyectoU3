@@ -13,7 +13,7 @@ import { Notify } from 'notiflix';
 import { AuthService } from '../services/auth.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // Asegúrate de importar Router
 
 @Component({
   selector: 'app-agendar',
@@ -37,7 +37,11 @@ import { RouterModule } from '@angular/router';
 export class AgendarComponent implements OnInit {
   agendarForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router // Inyecta el Router aquí
+  ) {
     this.agendarForm = this.fb.group({
       nombres: [
         '',
@@ -60,6 +64,20 @@ export class AgendarComponent implements OnInit {
     if (userEmail) {
       this.agendarForm.patchValue({ correo: userEmail });
     }
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']); // Ahora router está definido
+    Notify.success('Sesión cerrada exitosamente', {
+      timeout: 3000,
+      position: 'center-top',
+      cssAnimationStyle: 'zoom',
+    });
   }
 
   get minDate(): Date {

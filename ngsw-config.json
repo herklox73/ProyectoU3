@@ -6,7 +6,6 @@
       "name": "app",
       "installMode": "prefetch",
 
-
       "updateMode": "prefetch",
 
       "resources": {
@@ -30,13 +29,11 @@
         ]
       }
     }
-
-
   ],
   "dataGroups": [
     {
-      "name": "openweather-cache",
-      "urls": ["https://api.openweathermap.org/data/2.5/**"],
+      "name": "randomuser-cache",
+      "urls": ["https://randomuser.me/api/**"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 100,
@@ -44,6 +41,5 @@
         "timeout": "5s"
       }
     }
-
   ]
 }

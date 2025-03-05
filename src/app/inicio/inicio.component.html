@@ -8,7 +8,7 @@
   </div>
   <img
     alt="Paciente recibiendo tratamiento odontológico"
-    src="https://storage.googleapis.com/a1aa/image/8PEfDdqBvnDh7mPHwDRXh3ZQm7uZ_Fxc633y2YJ6tPk.jpg"
+    src="icons/odontologia.jpg"
     class="hero-image"
   />
 </section>
@@ -48,7 +48,25 @@
     </div>
   </div>
 </section>
-
+<section class="reviews">
+  <h2>Lo que dicen nuestros pacientes</h2>
+  <div class="review-cards">
+    @for (review of reviews; track review.email) {
+    <div class="review-card">
+      <img
+        [src]="review.picture.thumbnail"
+        [alt]="'Foto de ' + review.name.first + ' ' + review.name.last"
+        class="review-image"
+      />
+      <h3>{{ review.name.first }} {{ review.name.last }}</h3>
+      <p>
+        "¡Excelente servicio! Mi sonrisa nunca había estado tan brillante.
+        Totalmente recomendado."
+      </p>
+    </div>
+    }
+  </div>
+</section>
 <section class="contact" id="contact">
   <h2>Contacto</h2>
   <div class="contact-container">

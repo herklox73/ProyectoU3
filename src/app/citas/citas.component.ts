@@ -8,11 +8,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // Importa Router
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
-import { RouterOutlet } from '@angular/router';
+import { AuthService } from '../services/auth.service'; // Ya está importado
+import { Notify } from 'notiflix'; // Asegúrate de importar Notify
 
 export interface Cita {
   paciente: {
@@ -45,7 +46,6 @@ export interface Cita {
     MatDialogModule,
     MatSnackBarModule,
     ConfirmDialogComponent,
-    RouterOutlet,
   ],
   templateUrl: './citas.component.html',
   styleUrls: ['./citas.component.css'],
@@ -64,7 +64,12 @@ export class CitasComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator; // Use ! to assert non-null
   @ViewChild(MatSort) sort!: MatSort; // Use ! to assert non-null
 
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private authService: AuthService, // Inyecta AuthService
+    private router: Router // Inyecta Router
+  ) {
     // Load citas from localStorage
     const citas = JSON.parse(localStorage.getItem('citas') || '[]');
     // Add an ID to each cita for tracking
@@ -76,6 +81,20 @@ export class CitasComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+    Notify.success('Sesión cerrada exitosamente', {
+      timeout: 3000,
+      position: 'center-top',
+      cssAnimationStyle: 'zoom',
+    });
   }
 
   applyFilter(event: Event) {

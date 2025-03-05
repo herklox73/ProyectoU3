@@ -41,6 +41,11 @@ export class LoginComponent {
       correo: ['', [Validators.required, Validators.email]],
       contrasena: ['', [Validators.required, Validators.minLength(6)]],
     });
+    if (this.authService.isLoggedIn()) {
+      const returnUrl =
+        this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+      this.router.navigate([returnUrl]);
+    }
   }
 
   iniciarSesion() {
